@@ -112,7 +112,7 @@
                 }
                 axios.get(`/api.php?s=Msg/verify/mobile/${this.formData.mobile}/verify/${this.formData.verify}`)
                     .then(res => {
-                        console.log(res.code);
+                        console.log(res);
                         if(res.data.code!=200){
                             this.smsError = res.data.msg;
                         }
@@ -183,6 +183,7 @@
                             height: 50px;
                             border: 1px solid #ccc;
                             padding-left: 30px;
+                            outline: none;
                         }
                     }
                     .yzm{
@@ -193,6 +194,7 @@
                             height: 50px;
                             border: 1px solid #ccc;
                             padding-left: 30px;
+                            outline: none;
                         }
                         button{
                             width: 110px;
@@ -212,6 +214,7 @@
                             height: 50px;
                             border: 1px solid #ccc;
                             padding-left: 30px;
+                            outline: none;
                         }
                     }
                     .registerBtn{

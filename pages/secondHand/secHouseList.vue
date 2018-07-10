@@ -13,138 +13,101 @@
             <div class="area choice clearfix">
                 <span class="choice-tit fll">区域</span>
                 <div class="choice-list fll">
-                    <el-checkbox-group v-model="checkList" class="checkLists">
-                        <el-checkbox label="不限" style="margin-bottom: 20px; margin-left: 30px;"></el-checkbox>
-                        <el-checkbox label="金桥开发区"></el-checkbox>
-                        <el-checkbox label="如意开发区"></el-checkbox>
-                        <el-checkbox label="玉泉区"></el-checkbox>
-                        <el-checkbox label="回民区"></el-checkbox>
-                        <el-checkbox label="赛罕区"></el-checkbox>
-                        <el-checkbox label="新城区"></el-checkbox>
+                    <el-checkbox v-model="isChecked.r_id" @change="handleClear('r_id')" class="item">不限</el-checkbox>
+                    <el-checkbox-group v-model="formData.r_id">
+                        <el-checkbox :label="item" v-for="item in fillData2.r_idData" :key="item.id" @change="handleChange('r_id')" class="item">{{item.title}}</el-checkbox>
                     </el-checkbox-group>
                 </div>
             </div>
             <div class="choice clearfix">
                 <span class="choice-tit fll">价格</span>
-                <div class="choice-list fll clearfix">
-                    <el-checkbox-group v-model="checkList" class="checkLists">
-                        <el-checkbox label="不限" style="margin-bottom: 20px; margin-left: 30px;"></el-checkbox>
-                        <el-checkbox label="30万以下"></el-checkbox>
-                        <el-checkbox label="30-40万"></el-checkbox>
-                        <el-checkbox label="40-50万"></el-checkbox>
-                        <el-checkbox label="50万以上"></el-checkbox>
+                <div class="choice-list fll priceLi">
+                    <el-checkbox v-model="isChecked.total_price" @change="handleClear('total_price')" class="item">不限</el-checkbox>
+                    <el-checkbox-group v-model="formData.total_price">
+                        <el-checkbox :label="item" class="item" v-for="item in fillData.total_price" :key="item.id" @change="handleChange('total_price')">{{item.title}}</el-checkbox>
                     </el-checkbox-group>
                 </div>
             </div>
             <div class="section">
-                <input type="text">
+                <input type="text" v-model="formData.minPrice">
                 <b>&nbsp;-&nbsp;</b>
-                <input type="text">&nbsp;万
+                <input type="text" v-model="formData.maxPrice">&nbsp;万
                 <div class="okBtn" style="display: inline-block">确定</div>
             </div>
             <div class="choice clearfix">
                 <span class="choice-tit fll">户型</span>
                 <div class="choice-list fll clearfix">
-                    <el-checkbox-group v-model="checkList" class="checkLists">
-                        <el-checkbox label="一室" style="margin-bottom: 20px; margin-left: 30px;"></el-checkbox>
-                        <el-checkbox label="两室"></el-checkbox>
-                        <el-checkbox label="三室"></el-checkbox>
-                        <el-checkbox label="四室"></el-checkbox>
-                        <el-checkbox label="五室"></el-checkbox>
+                    <el-checkbox-group v-model="formData.bedroom">
+                        <el-checkbox v-for="item in fillData.bedroom" :label="item" :key="item.id" class="item">{{item.title}}</el-checkbox>
                     </el-checkbox-group>
                 </div>
             </div>
+
             <div class="choiceMiddle">
                 <div style="height: 0;" class="middleBox" id="box">
                     <slot name="middle">
                         <div class="choice clearfix">
                             <span class="choice-tit fll">类型</span>
                             <div class="choice-list fll clearfix">
-                                <el-checkbox-group v-model="checkList" class="checkLists">
-                                    <el-checkbox label="平层" style="margin-bottom: 20px; margin-left: 30px;"></el-checkbox>
-                                    <el-checkbox label="复式"></el-checkbox>
-                                    <el-checkbox label="跃层"></el-checkbox>
+                                <el-checkbox-group v-model="formData.type">
+                                    <el-checkbox :label="item" :key="item.id" v-for="item in fillData.type" class="item">{{item.title}}</el-checkbox>
                                 </el-checkbox-group>
                             </div>
                         </div>
                         <div class="choice clearfix">
                             <span class="choice-tit fll">装修</span>
                             <div class="choice-list fll clearfix">
-                                <el-checkbox-group v-model="checkList" class="checkLists">
-                                    <el-checkbox label="毛坯" style="margin-bottom: 20px; margin-left: 30px;"></el-checkbox>
-                                    <el-checkbox label="豪装"></el-checkbox>
-                                    <el-checkbox label="精装"></el-checkbox>
-                                    <el-checkbox label="简装"></el-checkbox>
-                                    <el-checkbox label="中装"></el-checkbox>
+                                <el-checkbox-group v-model="formData.decoration">
+                                    <el-checkbox :label="item" :key="item.id" v-for="item in fillData.decoration" class="item">{{item.title}}</el-checkbox>
                                 </el-checkbox-group>
                             </div>
                         </div>
                         <div class="choice clearfix">
                             <span class="choice-tit fll">朝向</span>
                             <div class="choice-list fll clearfix">
-                                <el-checkbox-group v-model="checkList" class="checkLists">
-                                    <el-checkbox label="东" style="margin-bottom: 20px; margin-left: 30px;"></el-checkbox>
-                                    <el-checkbox label="西"></el-checkbox>
-                                    <el-checkbox label="南"></el-checkbox>
-                                    <el-checkbox label="北"></el-checkbox>
-                                    <el-checkbox label="南北"></el-checkbox>
-                                    <el-checkbox label="双南"></el-checkbox>
-                                    <el-checkbox label="东南"></el-checkbox>
-                                    <el-checkbox label="西南"></el-checkbox>
-                                    <el-checkbox label="东北"></el-checkbox>
-                                    <el-checkbox label="西北"></el-checkbox>
-                                    <el-checkbox label="东西"></el-checkbox>
+                                <el-checkbox-group v-model="formData.direction">
+                                    <el-checkbox :label="item" :key="item.id" v-for="item in fillData.direction" class="item">{{item.title}}</el-checkbox>
                                 </el-checkbox-group>
                             </div>
                         </div>
                         <div class="choice clearfix">
                             <span class="choice-tit fll">面积</span>
                             <div class="choice-list fll clearfix">
-                                <el-checkbox-group v-model="checkList" class="checkLists">
-                                    <el-checkbox label="不限" style="margin-bottom: 20px; margin-left: 30px;"></el-checkbox>
-                                    <el-checkbox label="50平以下"></el-checkbox>
-                                    <el-checkbox label="50-70平"></el-checkbox>
-                                    <el-checkbox label="70-90平"></el-checkbox>
-                                    <el-checkbox label="90平以上"></el-checkbox>
+                                <el-checkbox v-model="isChecked.built_area" @change="handleClear('built_area')" class="item">不限</el-checkbox>
+                                <el-checkbox-group v-model="formData.built_area">
+                                    <el-checkbox :label="item" :key="item.id" v-for="item in fillData.built_area" class="item" @change="handleChange('built_area')" >{{item.title}}</el-checkbox>
                                 </el-checkbox-group>
                             </div>
-                        </div>
-                        <div class="section">
-                            <input type="text">
-                            <b>&nbsp;-&nbsp;</b>
-                            <input type="text">&nbsp;平
-                            <div class="okBtn" style="display: inline-block">确定</div>
                         </div>
                         <div class="choice clearfix">
                             <span class="choice-tit fll">楼龄</span>
                             <div class="choice-list fll clearfix">
-                                <el-checkbox-group v-model="checkList" class="checkLists">
-                                    <el-checkbox label="不限" style="margin-bottom: 20px; margin-left: 30px;"></el-checkbox>
-                                    <el-checkbox label="5年以内"></el-checkbox>
-                                    <el-checkbox label="10年以内"></el-checkbox>
-                                    <el-checkbox label="15年以内"></el-checkbox>
-                                    <el-checkbox label="15年以上"></el-checkbox>
+                                <el-checkbox v-model="isChecked.age" @change="handleClear('age')" class="item">不限</el-checkbox>
+                                <el-checkbox-group v-model="formData.age">
+                                    <el-checkbox :label="item" :key="item.id" v-for="item in fillData.age" class="item" @change="handleChange('age')" >{{item.title}}</el-checkbox>
                                 </el-checkbox-group>
                             </div>
+                        </div>
+                        <div class="section">
+                            <input type="text"v-model="formData.minCustom_built_area" >
+                            <b>&nbsp;-&nbsp;</b>
+                            <input type="text" v-model="formData.maxCustom_built_area">&nbsp;平
+                            <div class="okBtn" style="display: inline-block">确定</div>
                         </div>
                         <div class="choice clearfix">
                             <span class="choice-tit fll">楼层</span>
                             <div class="choice-list fll clearfix">
-                                <el-checkbox-group v-model="checkList" class="checkLists">
-                                    <el-checkbox label="不限" style="margin-bottom: 20px; margin-left: 30px;"></el-checkbox>
-                                    <el-checkbox label="底层"></el-checkbox>
-                                    <el-checkbox label="低楼层"></el-checkbox>
-                                    <el-checkbox label="中层"></el-checkbox>
-                                    <el-checkbox label="中高层"></el-checkbox>
+                                <el-checkbox v-model="isChecked.floor_type" @change="handleClear('floor_type')" class="item">不限</el-checkbox>
+                                <el-checkbox-group v-model="formData.floor_type">
+                                    <el-checkbox :label="item" :key="item.id" v-for="item in fillData.floor_type" class="item" @change="handleChange('floor_type')">{{item.title}}</el-checkbox>
                                 </el-checkbox-group>
                             </div>
                         </div>
                         <div class="choice clearfix">
                             <span class="choice-tit fll">电梯</span>
                             <div class="choice-list fll clearfix">
-                                <el-checkbox-group v-model="checkList" class="checkLists">
-                                    <el-checkbox label="是" style="margin-bottom: 20px; margin-left: 30px;"></el-checkbox>
-                                    <el-checkbox label="否"></el-checkbox>
+                                <el-checkbox-group v-model="formData.dianti">
+                                    <el-checkbox :label="item" :key="item.id" v-for="item in fillData.dianti" class="item">{{item.title}}</el-checkbox>
                                 </el-checkbox-group>
                             </div>
                         </div>
@@ -158,15 +121,16 @@
                     </slot>
                 </div>
             </div>
+
             <div class="choiceFoot">
                 <slot name="foot">
                     <div class="choiceClass">
                         <span class="choice-tit fll">筛选分类</span>
                         <div class="choice-content fll">
-                            <div class="block fll">
-                                不限 <i class="iconfont icon-chahao flr"></i>
+                            <div class="block fll" v-for="item in selectedData" @click="handleReduce(item)">
+                                {{item.title}} <i class="iconfont icon-chahao flr"></i>
                             </div>
-                            <div class="clear fll">
+                            <div class="clear fll" @click="handleClearAll">
                                 <i class="iconfont icon-lajitong"></i> 清除全部
                             </div>
                         </div>
@@ -186,17 +150,17 @@
             <div class="bigBtns">
                 <div class="btns1">
                     <el-row>
-                        <el-button type="danger" plain class="btn1-item active">最新</el-button>
-                        <el-button type="danger" plain class="btn1-item">房屋总价 <i class="iconfont icon-jiantou1-bottom"></i></el-button>
-                        <el-button type="danger" plain class="btn1-item">房屋单价 <i class="iconfont icon-jiantou1-bottom"></i></el-button>
-                        <el-button type="danger" plain class="btn1-item">房屋面积 <i class="iconfont icon-jiantou1-bottom"></i></el-button>
+                        <el-button plain class="btn1-item active">最新</el-button>
+                        <el-button plain class="btn1-item">房屋总价 <i class="iconfont icon-jiantou1-bottom"></i></el-button>
+                        <el-button plain class="btn1-item">房屋单价 <i class="iconfont icon-jiantou1-bottom"></i></el-button>
+                        <el-button plain class="btn1-item">房屋面积 <i class="iconfont icon-jiantou1-bottom"></i></el-button>
                     </el-row>
                 </div>
                 <div class="btns-choice">
                     <div class="choice clearfix">
                         <span class="choice-tit fll">筛选</span>
                         <div class="choice-list fll clearfix">
-                            <el-checkbox-group v-model="checkList" class="checkLists">
+                            <el-checkbox-group class="checkLists">
                                 <el-checkbox label="两年内" style="margin-bottom: 20px; margin-left: 30px;"></el-checkbox>
                                 <el-checkbox label="满两年"></el-checkbox>
                                 <el-checkbox label="满五年"></el-checkbox>
@@ -208,42 +172,46 @@
             </div>
             <div class="findHouse">
                 共找到
-                <span class="total">1010</span> 个
+                <span class="total">{{houseCount}}</span> 个
                 <span class="region">呼和浩特</span>
                 <span>二手房源</span>
             </div>
-            <div class="houseLists">
+            <div class="houseLists" v-for="item in houseArr">
                 <div class="list_item clearfix">
                     <div class="list_left fll">
-                        <a href="#"><img src="../../assets/img/water.jpg"></a>
+                        <a href="#"><img :src="'http://www.fooju.cn'+ item.pic"></a>
                     </div>
                     <div class="list_center fll">
                         <div class="benefit">
-                            <a href="#">关小学区房，满五唯一，适合陪读</a>
+                            <a href="#">{{item.title}}</a>
                         </div>
                         <div class="introduce word">
-                            <span>水设院家属楼</span>|
-                            <span>2室1厅1卫</span>|
-                            <span>南北</span>
+                            <span>{{item.village}}</span>|
+                            <span>{{item.bedroom}}室{{item.livingroom}}厅{{item.wc}}卫</span>|
+                            <span>{{item.direction}}</span>
+                            <span>{{item.region}}|</span>
+                            <span>{{item.built_area}}平</span>
                         </div>
                         <div class="built word">
-                            <span>中楼层/6</span>层|
-                            <span>中装</span>
+                            <span>{{item.floor}}/{{item.floor_totle}}</span>层|
+                            <span>{{item.decoration}}</span>
                         </div>
                         <div class="constructionTime word">
-                            <span>1995</span>年建|
-                            <span>多层</span>
+                            <span>{{item.age}}</span>年建|
+                            <span>{{item.type}}</span>
                         </div>
                         <div class="howMuch word">
-                            <span>0</span>人关注| 共
-                            <span>0</span>次带看|
+                            <span>{{item.guanzhu_num}}</span>人关注| 共
+                            <span>{{item.daikan_num}}</span>次带看|
                             <span>今天发布</span>
                         </div>
-                        <div class="label word"></div>
+                        <div class="label word">
+                            <span v-for="lis in item.lable" class="labelItem fll">{{lis.name}}</span>
+                        </div>
                     </div>
                     <div class="list_right flr">
-                        <div class="price"><span>100</span>万</div>
-                        <div class="unitPrice">单价 <span>100</span>元/平米</div>
+                        <div class="price"><span>{{item.total_price}}</span>万</div>
+                        <div class="unitPrice">单价 <span>{{item.unit_price}}</span>元/平米</div>
                         <a href="#">关注</a>
                     </div>
                 </div>
@@ -253,8 +221,7 @@
                     <el-pagination
                             background
                             layout="prev, pager, next"
-                            :total="10120">
-                        <!--以上页数为实际总页数*10-->
+                            :total="houseCount" @current-change="currentPage">
                     </el-pagination>
                 </div>
             </div>
@@ -284,49 +251,187 @@
         },
         data(){
             return{
-                checkList:['不限'],
                 isShow: false,
-                fillData:{
-                    total_priceData:[
-                        {
-                            title:"不限",
-                            id:'0-99999'
-                        },
-                        {
-                            title:"1000以下",
-                            id:'0-1000'
-                        },
-                        {
-                            title:"1000-1500",
-                            id:'1000-1500'
-                        },
-                        {
-                            title:"1500-2500",
-                            id:'1500-2500'
-                        },
-                        {
-                            title:"2500-3500",
-                            id:'2500-3500'
-                        },
-                        {
-                            title:"3500-4500",
-                            id:'3500-4500'
-                        },
-                        {
-                            title:"4500-5500",
-                            id:'4500-5500'
-                        }
+                formData:{
+                    r_id:[],
+                    total_price:[],
+                    minPrice:[],
+                    maxPrice:[],
+                    bedroom:[],
+                    decoration:[],
+                    direction:[],
+                    built_area:[],
+                    minCustom_built_area:'',
+                    maxCustom_built_area:'',
+                    age:[],
+                    dianti:[],
+                    floor_type:[],
+                    type:[]
+                },
+                fillData: {
+                    total_price: [
+                        {title: "30万以下", id: '0-30'},
+                        {title: "30-40万",id: '30-40'},
+                        {title: "40-50万", id: '40-50'},
+                        {title: "50万以上", id: '50-99999'}
+                    ],
+                    bedroom: [
+                        {title: "一室", id: 1},
+                        {title: "两室", id: 2},
+                        {title: "三室", id: 3},
+                        {title: "四室", id: 4},
+                        {title: "五室", id: 5}
+                    ],
+                    type: [
+                        {title: '平层', id: '平层'},
+                        {title: '复式', id: '复式'},
+                        {title: '跃层', id: '跃层'}
+                    ],
+                    decoration: [
+                        {title: '毛坯', id: '毛坯'},
+                        {title: '豪装', id: '豪装'},
+                        {title: '精装', id: '精装'},
+                        {title: '简装', id: '简装'},
+                        {title: '中装', id: '中装'}
+                    ],
+                    direction: [
+                        {title: '东', id: '东'},
+                        {title: '西', id: '西'},
+                        {title: '南', id: '南'},
+                        {title: '北', id: '北'},
+                        {title: '南北', id: '南北'},
+                        {title: '双南', id: '双南'},
+                        {title: '西南', id: '西南'},
+                        {title: '东北', id: '东北'},
+                        {title: '东南', id: '东南'},
+                        {title: '西北', id: '西北'},
+                        {title: '东西', id: '东西'}
+                    ],
+                    built_area: [
+                        {title: '50平以下', id: '1-50'},
+                        {title: '50-70平', id: '50-70'},
+                        {title: '70-90平', id: '70-90'},
+                        {title: '90以上', id: '90-9999999'}
+                    ],
+                    dianti: [
+                        {id: 0, title: '是'},
+                        {id: 1, title: '否'}
+                        ],
+                    age: [
+                        {id: '1-5', title: '5年以内'},
+                        {id: '1-10', title: '10年以内'},
+                        {id: '1-15', title: '15年以内'},
+                        {id: '15-9999', title: '15年以上'}
+                    ],
+                    floor_type: [
+                        {id: '底层', title: "底层"},
+                        {id: '低楼层', title: "低楼层"},
+                        {id: '中层', title: "中层"},
+                        {id: '中高层', title: "中高层"},
                     ]
                 },
+                isChecked:{
+                    r_id: true,
+                    total_price: true,
+                    built_area: true,
+                    age: true,
+                    floor_type: true
+                },
+                params:{
+                    page_size: 10,
+                    page_num: 1,
+                    order: 1
+                },
+                houseCount: 0,
+                houseArr: []
             }
-        },
-        created(){
-            // console.log(this.fillData2);
         },
         methods: {
             handleShow(e){
                 this.isShow = e;
+            },
+            handleClear(key){
+                if(this.isChecked[key]){
+                    this.formData[key].splice(0);
+                }
+            },
+            handleChange(key){
+                if(this.formData[key].length>0){
+                    this.isChecked[key] = false;
+                }else{
+                    this.isChecked[key] = true;
+                }
+            },
+            handleReduce(item){
+                let index = this.formData[item._parentName].findIndex(val=>{
+                    if(val.id == item.id){
+                        return true;
+                    }
+                });
+                this.formData[item._parentName].splice(index,1);
+            },
+            handleClearAll(){
+                let formData = this.formData;
+                for(let arr in formData){
+                    if(formData[arr] instanceof Array){
+                        formData[arr].splice(0);
+                    }
+                }
+            },
+            currentPage(val){
+                // console.log(val);
+                this.params.page_num = val;
+                this.getData();
+            },
+            getData(){
+                let formData = this.formData;
+                let params = {...this.params};
+                for(let key in formData){
+                    if(formData[key] instanceof Array && formData[key].length>0){
+                        params[key] = formData[key].map(item => item.id)
+                    }
+                }
+                const loading = this.$loading({
+                    lock: true,
+                    text: '数据加载中...',
+                    spinner: 'el-icon-loading',
+                    background: 'rgba(0,0,0,.7)'
+                });
+                axios.get(api.paramToUrl(api.used_lists, params)).then(res => {
+                    console.log(res);
+                    this.houseCount = res.data.count;
+                    this.houseArr = res.data.data;
+                    loading.close();
+                }).catch(err => {
+                    loading.close();
+                })
             }
+        },
+        computed: {
+            selectedData(){
+                let formData = this.formData;
+                let allData = [];
+                for(let key in formData){
+                    if(formData[key] instanceof Array){
+                        formData[key].forEach(item=>{
+                            item._parentName = [key];
+                            allData.push(item)
+                        })
+                    }
+                }
+                return allData;
+            }
+        },
+        created(){
+            console.log(this.fillData);
+        },
+        watch:{
+            selectedData(){
+                this.getData();
+            }
+        },
+        mounted(){
+            this.getData();
         },
         directives:{
             trans:{
@@ -335,7 +440,7 @@
                     let btn1 = el.querySelector('#btn1');
                     let btn2 = el.querySelector('#btn2');
                     btn1.onclick = function(){
-                        console.log(1);
+                        // console.log(1);
                         box.style.height = "auto";
                         let startHeight = 0;
                         let targetHeight = getComputedStyle(box).height;
@@ -344,7 +449,7 @@
                         box.style.height = targetHeight;
                     };
                     btn2.onclick = function(){
-                        console.log(2);
+                        // console.log(2);
                         box.style.height = 0;
                     };
                 }
@@ -528,9 +633,14 @@
                 }
                 .choice-list{
                     margin-left: 20px;
-                    .checkLists{
-                        width: 608px;
+                    .item{
+                        float: left;
+                        margin-bottom: 20px;
+                        margin-left: 30px;
                     }
+                }
+                .priceLi{
+                    width: 667px;
                 }
             }
             .choiceMiddle{
@@ -541,6 +651,7 @@
             }
             .choiceMore{
                 width: 100%;
+                height: 80px;
                 .moreBlock{
                     width: 1100px;
                     height: 80px;
@@ -557,7 +668,6 @@
                 height: 38px;
                 .choiceClass{
                     width: 800px;
-                    height: 38px;
                     padding-right: 300px;
                     .choice-tit{
                         font-size: 14px;
@@ -577,6 +687,8 @@
                             border: 1px solid #ccc;
                             color: #c30d23;
                             font-size: 14px;
+                            margin-right: 20px;
+                            margin-bottom: 10px;
                             .icon-chahao{
                                 background: #ccc;
                                 color: #fff;
@@ -656,6 +768,17 @@
                         }
                         .label{
                             margin-top: 16px;
+                            .labelItem{
+                                margin-right: 6px;
+                                display: inline-block;
+                                width: 72px;
+                                height: 22px;
+                                line-height: 22px;
+                                text-align: center;
+                                background: #5f1985;
+                                color: #fff;
+                                border-radius: 5px;
+                            }
                         }
                     }
                     .list_right{

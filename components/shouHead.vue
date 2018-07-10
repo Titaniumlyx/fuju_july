@@ -22,7 +22,7 @@
                 <span class="nav-item active"><a href="#">首页</a></span>
                 <span class="nav-item"><a href="/secondHand/secHouseList">二手房</a></span>
                 <span class="nav-item"><a href="#">新房</a></span>
-                <span class="nav-item"><a href="#">租房</a></span>
+                <span class="nav-item"><a href="/rentHouseLists/rentHouse">租房</a></span>
                 <span class="nav-item"><a href="#">学区房</a></span>
                 <span class="nav-item"><a href="#">小区</a></span>
                 <span class="nav-item"><a href="#">经纪人</a></span>
