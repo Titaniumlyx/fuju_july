@@ -3,11 +3,15 @@
         <div class="secBlock" v-trans>
             <div class="directive">
                 <span class="fll"><a href="#">福居网></a></span>
-                <span class="fll zi2"><a href="#">二手房</a></span>
+                <span class="fll zi2"><a href="#">租房</a></span>
             </div>
             <div class="searchBlock">
                 <input class="fll input" type="text" placeholder="搜索">
                 <input class="searchBtn fll" type="button" value="搜索"></input>
+                <div class="searchMap flr">
+                    <img src="../../assets/img/mapSearch.png">
+                    地图找房
+                </div>
             </div>
 
             <div class="area choice clearfix">
@@ -20,11 +24,11 @@
                 </div>
             </div>
             <div class="choice clearfix">
-                <span class="choice-tit fll">价格</span>
+                <span class="choice-tit fll">租金</span>
                 <div class="choice-list fll priceLi">
-                    <el-checkbox v-model="isChecked.total_price" @change="handleClear('total_price')" class="item">不限</el-checkbox>
-                    <el-checkbox-group v-model="formData.total_price">
-                        <el-checkbox :label="item" class="item" v-for="item in fillData.total_price" :key="item.id" @change="handleChange('total_price')">{{item.title}}</el-checkbox>
+                    <el-checkbox v-model="isChecked.rent" @change="handleClear('rent')" class="item">不限</el-checkbox>
+                    <el-checkbox-group v-model="formData.rent">
+                        <el-checkbox :label="item" class="item" v-for="item in fillData.rent" :key="item.id" @change="handleChange('rent')">{{item.title}}</el-checkbox>
                     </el-checkbox-group>
                 </div>
             </div>
@@ -47,14 +51,6 @@
                 <div style="height: 0;" class="middleBox" id="box">
                     <slot name="middle">
                         <div class="choice clearfix">
-                            <span class="choice-tit fll">类型</span>
-                            <div class="choice-list fll clearfix">
-                                <el-checkbox-group v-model="formData.type">
-                                    <el-checkbox :label="item" :key="item.id" v-for="item in fillData.type" class="item">{{item.title}}</el-checkbox>
-                                </el-checkbox-group>
-                            </div>
-                        </div>
-                        <div class="choice clearfix">
                             <span class="choice-tit fll">装修</span>
                             <div class="choice-list fll clearfix">
                                 <el-checkbox-group v-model="formData.decoration">
@@ -76,15 +72,6 @@
                                 <el-checkbox v-model="isChecked.built_area" @change="handleClear('built_area')" class="item">不限</el-checkbox>
                                 <el-checkbox-group v-model="formData.built_area">
                                     <el-checkbox :label="item" :key="item.id" v-for="item in fillData.built_area" class="item" @change="handleChange('built_area')" >{{item.title}}</el-checkbox>
-                                </el-checkbox-group>
-                            </div>
-                        </div>
-                        <div class="choice clearfix">
-                            <span class="choice-tit fll">楼龄</span>
-                            <div class="choice-list fll clearfix">
-                                <el-checkbox v-model="isChecked.age" @change="handleClear('age')" class="item">不限</el-checkbox>
-                                <el-checkbox-group v-model="formData.age">
-                                    <el-checkbox :label="item" :key="item.id" v-for="item in fillData.age" class="item" @change="handleChange('age')" >{{item.title}}</el-checkbox>
                                 </el-checkbox-group>
                             </div>
                         </div>
@@ -111,11 +98,20 @@
                                 </el-checkbox-group>
                             </div>
                         </div>
-                        <div class="other">
-                            <span class="other-tit fll">其他</span>
-                            <div class="other-content fll">
-                                <input type="text" placeholder="在结果中搜索">
-                                <div class="okBtn" style="display: inline-block">确定</div>
+                        <div class="choice clearfix">
+                            <span class="choice-tit fll">方式</span>
+                            <div class="choice-list fll clearfix">
+                                <el-checkbox-group v-model="formData.style">
+                                    <el-checkbox :label="item" :key="item.id" v-for="item in fillData.style" class="item">{{item.title}}</el-checkbox>
+                                </el-checkbox-group>
+                            </div>
+                        </div>
+                        <div class="choice clearfix">
+                            <span class="choice-tit fll">更多</span>
+                            <div class="choice-list fll clearfix">
+                                <el-checkbox-group v-model="formData.more">
+                                    <el-checkbox :label="item" :key="item.id" v-for="item in fillData.more" class="item">{{item.title}}</el-checkbox>
+                                </el-checkbox-group>
                             </div>
                         </div>
                     </slot>
@@ -151,39 +147,25 @@
                 <div class="btns1">
                     <el-row>
                         <el-button plain class="btn1-item active">最新</el-button>
-                        <el-button plain class="btn1-item">房屋总价 <i class="iconfont icon-jiantou1-bottom"></i></el-button>
-                        <el-button plain class="btn1-item">房屋单价 <i class="iconfont icon-jiantou1-bottom"></i></el-button>
+                        <el-button plain class="btn1-item">房屋租金 <i class="iconfont icon-jiantou1-bottom"></i></el-button>
                         <el-button plain class="btn1-item">房屋面积 <i class="iconfont icon-jiantou1-bottom"></i></el-button>
                     </el-row>
-                </div>
-                <div class="btns-choice">
-                    <div class="choice clearfix">
-                        <span class="choice-tit fll">筛选</span>
-                        <div class="choice-list fll clearfix">
-                            <el-checkbox-group class="checkLists">
-                                <el-checkbox label="两年内" style="margin-bottom: 20px; margin-left: 30px;"></el-checkbox>
-                                <el-checkbox label="满两年"></el-checkbox>
-                                <el-checkbox label="满五年"></el-checkbox>
-                                <el-checkbox label="随时看房"></el-checkbox>
-                            </el-checkbox-group>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="findHouse">
                 共找到
-                <span class="total">{{houseCount}}</span> 个
+                <span class="total">{{houseCount}}</span> 套
                 <span class="region">呼和浩特</span>
-                <span>二手房源</span>
+                <span>在租房源</span>
             </div>
             <div class="houseLists" v-for="item in houseArr">
                 <div class="list_item clearfix">
                     <div class="list_left fll">
-                        <a href="/secondHand/secHouseDetails"><img :src="'http://www.fooju.cn'+ item.pic"></a>
+                        <a href="#"><img :src="'http://www.fooju.cn'+ item.pic"></a>
                     </div>
                     <div class="list_center fll">
                         <div class="benefit">
-                            <a href="/secondHand/secHouseDetails">{{item.title}}</a>
+                            <a href="#">{{item.title}}</a>
                         </div>
                         <div class="introduce word">
                             <span>{{item.village}}</span>|
@@ -201,17 +183,16 @@
                             <span>{{item.type}}</span>
                         </div>
                         <div class="howMuch word">
-                            <span>{{item.guanzhu_num}}</span>人关注| 共
-                            <span>{{item.daikan_num}}</span>次带看|
-                            <span>今天发布</span>
+                            具体地址: <span>{{item.address}}</span>
                         </div>
                         <div class="label word">
                             <span v-for="lis in item.lable" class="labelItem fll">{{lis.name}}</span>
                         </div>
                     </div>
                     <div class="list_right flr">
-                        <div class="price"><span>{{item.total_price}}</span>万</div>
-                        <div class="unitPrice">单价 <span>{{item.unit_price}}</span>元/平米</div>
+                        <div class="price"><span>{{item.rent}}</span>{{item.rent_type}}</div>
+                        <div class="unitPrice"><span>{{item.edittime}}更新</span></div>
+                        <div class="unitPrice"><span>&nbsp;&nbsp;&nbsp;浏览{{item.v_id}}次</span></div>
                         <a href="#">关注</a>
                     </div>
                 </div>
@@ -235,8 +216,8 @@
     import api from '~/mainApi/index'
 
     export default {
-        name: "secHouseList",
-        layout: "secondHanBuju",
+        name: "rentHouse",
+        layout: "default",
         async asyncData(){
             let r_idData = await axios.get(api.paramToUrl(api.regionLists,{city:"呼和浩特"}))
             r_idData.data.data = r_idData.data.data.map(item =>{
@@ -249,12 +230,15 @@
                 },
             }
         },
+        created(){
+            console.log(this.fillData2.r_idData);
+        },
         data(){
             return{
                 isShow: false,
                 formData:{
                     r_id:[],
-                    total_price:[],
+                    rent:[],
                     minPrice:[],
                     maxPrice:[],
                     bedroom:[],
@@ -263,78 +247,179 @@
                     built_area:[],
                     minCustom_built_area:'',
                     maxCustom_built_area:'',
-                    age:[],
-                    dianti:[],
                     floor_type:[],
-                    type:[]
+                    dianti:[],
+                    style:[],
+                    more:[]
                 },
-                fillData: {
-                    total_price: [
-                        {title: "30万以下", id: '0-30'},
-                        {title: "30-40万",id: '30-40'},
-                        {title: "40-50万", id: '40-50'},
-                        {title: "50万以上", id: '50-99999'}
+                fillData:{
+                    rent:[
+                        {
+                            title:"1000以下",
+                            id:'0-1000'
+                        },
+                        {
+                            title:"1000-1500",
+                            id:'1000-1500'
+                        },
+                        {
+                            title:"1500-2500",
+                            id:'1500-2500'
+                        },
+                        {
+                            title:"2500-3500",
+                            id:'2500-3500'
+                        },
+                        {
+                            title:"3500-4500",
+                            id:'3500-4500'
+                        },
+                        {
+                            title:"4500-5500",
+                            id:'4500-5500'
+                        }
                     ],
-                    bedroom: [
-                        {title: "一室", id: 1},
-                        {title: "两室", id: 2},
-                        {title: "三室", id: 3},
-                        {title: "四室", id: 4},
-                        {title: "五室", id: 5}
+                    bedroom:[
+                        {
+                            title:"1",
+                            id:'1'
+                        },
+                        {
+                            title:"2",
+                            id:'2'
+                        },
+                        {
+                            title:"3",
+                            id:'3'
+                        },
+                        {
+                            title:"4",
+                            id:'4'
+                        },
                     ],
-                    type: [
-                        {title: '平层', id: '平层'},
-                        {title: '复式', id: '复式'},
-                        {title: '跃层', id: '跃层'}
+                    decoration:[
+                        {
+                            title:"毛坯",
+                            id:'1'
+                        },
+                        {
+                            title:"简易装修",
+                            id:'2'
+                        },
+                        {
+                            title:"精装修",
+                            id:'3'
+                        },
+                        {
+                            title:"豪华装修",
+                            id:'4'
+                        },
                     ],
-                    decoration: [
-                        {title: '毛坯', id: '毛坯'},
-                        {title: '豪装', id: '豪装'},
-                        {title: '精装', id: '精装'},
-                        {title: '简装', id: '简装'},
-                        {title: '中装', id: '中装'}
+                    direction:[
+                        {
+                            title:"东",
+                            id:'1'
+                        },
+                        {
+                            title:"南",
+                            id:'2'
+                        },
+                        {
+                            title:"西",
+                            id:'3'
+                        },
+                        {
+                            title:"北",
+                            id:'4'
+                        },
                     ],
-                    direction: [
-                        {title: '东', id: '东'},
-                        {title: '西', id: '西'},
-                        {title: '南', id: '南'},
-                        {title: '北', id: '北'},
-                        {title: '南北', id: '南北'},
-                        {title: '双南', id: '双南'},
-                        {title: '西南', id: '西南'},
-                        {title: '东北', id: '东北'},
-                        {title: '东南', id: '东南'},
-                        {title: '西北', id: '西北'},
-                        {title: '东西', id: '东西'}
+                    built_area:[
+                        {
+                            title:"50平以下",
+                            id:'0-50'
+                        },
+                        {
+                            title:"50-70平",
+                            id:'50-70'
+                        },
+                        {
+                            title:"70-90平",
+                            id:'70-90'
+                        },
+                        {
+                            title:"90平以上",
+                            id:'90-9999'
+                        },
                     ],
-                    built_area: [
-                        {title: '50平以下', id: '1-50'},
-                        {title: '50-70平', id: '50-70'},
-                        {title: '70-90平', id: '70-90'},
-                        {title: '90以上', id: '90-9999999'}
+                    floor_type:[
+                        {
+                            title:"底层",
+                            id:'1'
+                        },
+                        {
+                            title:"低楼层",
+                            id:'2'
+                        },
+                        {
+                            title:"中层",
+                            id:'3'
+                        },
+                        {
+                            title:"中高层",
+                            id:'4'
+                        },
                     ],
-                    dianti: [
-                        {id: 0, title: '是'},
-                        {id: 1, title: '否'}
-                        ],
-                    age: [
-                        {id: '1-5', title: '5年以内'},
-                        {id: '1-10', title: '10年以内'},
-                        {id: '1-15', title: '15年以内'},
-                        {id: '15-9999', title: '15年以上'}
+                    dianti:[
+                        {
+                            title:"是",
+                            id:'1'
+                        },
+                        {
+                            title:"否",
+                            id:'2'
+                        },
                     ],
-                    floor_type: [
-                        {id: '底层', title: "底层"},
-                        {id: '低楼层', title: "低楼层"},
-                        {id: '中层', title: "中层"},
-                        {id: '中高层', title: "中高层"},
-                    ]
+                    style:[
+                        {
+                            title:"整租",
+                            id:'1'
+                        },
+                        {
+                            title:"合租",
+                            id:'2'
+                        },
+                    ],
+                    more:[
+                        {
+                            title:"近地铁",
+                            id:'1'
+                        },
+                        {
+                            title:"精装修",
+                            id:'2'
+                        },
+                        {
+                            title:"有采暖",
+                            id:'3'
+                        },
+                        {
+                            title:"独立卫生间",
+                            id:'4'
+                        },
+                        {
+                            title:"有阳台",
+                            id:'5'
+                        },
+                        {
+                            title:"随时看房",
+                            id:'6'
+                        },
+                    ],
                 },
                 isChecked:{
                     r_id: true,
-                    total_price: true,
+                    rent: true,
                     built_area: true,
-                    age: true,
                     floor_type: true
                 },
                 params:{
@@ -379,7 +464,7 @@
                 }
             },
             currentPage(val){
-                // console.log(val);
+                console.log(val);
                 this.params.page_num = val;
                 this.getData();
             },
@@ -397,10 +482,10 @@
                     spinner: 'el-icon-loading',
                     background: 'rgba(0,0,0,.7)'
                 });
-                axios.get(api.paramToUrl(api.used_lists, params)).then(res => {
-                    console.log(res);
+                axios.get(api.paramToUrl(api.retal_lists, params)).then(res => {
                     this.houseCount = res.data.count;
                     this.houseArr = res.data.data;
+                    console.log(res);
                     loading.close();
                 }).catch(err => {
                     loading.close();
@@ -421,9 +506,6 @@
                 }
                 return allData;
             }
-        },
-        created(){
-            console.log(this.fillData);
         },
         watch:{
             selectedData(){
@@ -540,8 +622,8 @@
                 height: 60px;
                 margin-top: 40px;
                 .input{
-                    width: 740px;
-                    height: 58px;
+                    width: 726px;
+                    height: 60px;
                     background: #f4f4f4;
                     border: none;
                     padding-left: 20px;
@@ -563,10 +645,26 @@
                     border: none;
                     cursor: pointer;
                 }
+                .searchMap{
+                    width: 180px;
+                    height: 60px;
+                    line-height: 60px;
+                    color: #fff;
+                    text-align: center;
+                    background: #5f1985;
+                    cursor: pointer;
+                    border-radius: 3px;
+                    img{
+                        width: 20px;
+                        height: 20px;
+                        margin-right: 10px;
+                        margin-bottom: -4px;
+                    }
+                }
             }
             .area{
-                 padding-top: 40px;
-             }
+                padding-top: 40px;
+            }
             .section{
                 width: 800px;
                 padding-right: 300px;
@@ -595,34 +693,34 @@
                 }
             }
             .other{
-                width: 800px;
-                padding-right: 300px;
-                overflow: hidden;
-                margin-bottom: 20px;
-                font-size: 14px;
-                color: #333;
-                .other-content{
-                    margin-left: 70px;
-                    input{
-                        width: 150px;
-                        height: 22px;
-                        font-size: 14px;
-                        border: 1px solid #ccc;
-                    }
-                    .okBtn{
-                        background: #c30d23;
-                        color: #fff;
-                        width: 55px;
-                        height: 25px;
-                        line-height: 25px;
-                        font-size: 13px;
-                        text-align: center;
-                        border: none;
-                        margin-left: 20px;
-                        margin-top: 2px;
-                        cursor: pointer;
-                    }
-                }
+                /*width: 800px;*/
+                /*padding-right: 300px;*/
+                /*overflow: hidden;*/
+                /*margin-bottom: 20px;*/
+                /*font-size: 14px;*/
+                /*color: #333;*/
+                /*.other-content{*/
+                /*margin-left: 70px;*/
+                /*input{*/
+                /*width: 150px;*/
+                /*height: 22px;*/
+                /*font-size: 14px;*/
+                /*border: 1px solid #ccc;*/
+                /*}*/
+                /*.okBtn{*/
+                /*background: #c30d23;*/
+                /*color: #fff;*/
+                /*width: 55px;*/
+                /*height: 25px;*/
+                /*line-height: 25px;*/
+                /*font-size: 13px;*/
+                /*text-align: center;*/
+                /*border: none;*/
+                /*margin-left: 20px;*/
+                /*margin-top: 2px;*/
+                /*cursor: pointer;*/
+                /*}*/
+                /*}*/
             }
             .choice{
                 padding-right: 300px;
