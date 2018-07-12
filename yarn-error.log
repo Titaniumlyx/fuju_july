@@ -1,5 +1,5 @@
 Arguments: 
-  D:\H5\inst\node-js\node.exe C:\Users\Titanum\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add md5
+  D:\H5\inst\node-js\node.exe C:\Users\Titanum\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js run dev
 
 PATH: 
   C:\Program Files (x86)\Lenovo\FusionEngine;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Common Files\lenovo\easyplussdk\bin;C:\Program Files (x86)\iFLYTEK\VoiceAssistant\SpeechPlusRuntime;C:\Program Files (x86)\Lenovo\Voice SDK;C:\Program Files (x86)\Lenovo\Lenovo Home\;C:\Program Files (x86)\yagarto\bin;C:\Program Files (x86)\yagarto-tools-20100703\bin;D:\14课程设计+嵌入式\yagarto\bin;D:\14课;设计+嵌入式\yagarto-tools-20100703\bin;D:\H;\Node.js类\;;D:\下载的APP  新\Git   class\Git\cmd;D:\H5\inst\node-js\;;D:\H5\Microsoft VS Code\bin;C:\Users\Titanum\AppData\Roaming\npm
@@ -34,8 +34,10 @@ npm manifest:
       "express": "^4.15.3",
       "http-proxy-middleware": "^0.18.0",
       "js-cookie": "^2.2.0",
+      "md5": "^2.2.1",
       "node-sass": "^4.9.0",
       "nuxt": "latest",
+      "qs": "^6.5.2",
       "sass-loader": "^7.0.3",
       "source-map-support": "^0.4.15",
       "vue-awesome-swiper": "^3.1.3"
@@ -1389,6 +1391,10 @@ Lockfile:
       escape-string-regexp "^1.0.5"
       supports-color "^5.3.0"
   
+  charenc@~0.0.1:
+    version "0.0.2"
+    resolved "http://registry.npm.taobao.org/charenc/download/charenc-0.0.2.tgz#c0a1d2f3a7092e03774bfa83f14c0fc5790a8667"
+  
   check-types@^7.3.0:
     version "7.4.0"
     resolved "http://registry.npm.taobao.org/check-types/download/check-types-7.4.0.tgz#0378ec1b9616ec71f774931a3c6516fad8c152f4"
@@ -1802,6 +1808,10 @@ Lockfile:
       lru-cache "^4.0.1"
       shebang-command "^1.2.0"
       which "^1.2.9"
+  
+  crypt@~0.0.1:
+    version "0.0.2"
+    resolved "http://registry.npm.taobao.org/crypt/download/crypt-0.0.2.tgz#88d7ff7ec0dfb86f713dc87bbb42d044d3e6c41b"
   
   cryptiles@2.x.x:
     version "2.0.5"
@@ -3584,6 +3594,10 @@ Lockfile:
     version "1.1.5"
     resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.5.tgz#1f3b26ef613b214b88cbca23cc6c01d87961eecc"
   
+  is-buffer@~1.1.1:
+    version "1.1.6"
+    resolved "http://registry.npm.taobao.org/is-buffer/download/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
+  
   is-builtin-module@^1.0.0:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/is-builtin-module/-/is-builtin-module-1.0.0.tgz#540572d34f7ac3119f8f76c30cbc1b1e037affbe"
@@ -3831,6 +3845,10 @@ Lockfile:
   js-base64@^2.1.9:
     version "2.1.9"
     resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.1.9.tgz#f0e80ae039a4bd654b5f281fc93f04a914a7fcce"
+  
+  js-cookie@^2.2.0:
+    version "2.2.0"
+    resolved "http://registry.npm.taobao.org/js-cookie/download/js-cookie-2.2.0.tgz#1b2c279a6eece380a12168b92485265b35b1effb"
   
   js-tokens@^3.0.0, js-tokens@^3.0.2:
     version "3.0.2"
@@ -4159,6 +4177,14 @@ Lockfile:
   math-expression-evaluator@^1.2.14:
     version "1.2.17"
     resolved "https://registry.yarnpkg.com/math-expression-evaluator/-/math-expression-evaluator-1.2.17.tgz#de819fdbcd84dccd8fae59c6aeb79615b9d266ac"
+  
+  md5@^2.2.1:
+    version "2.2.1"
+    resolved "http://registry.npm.taobao.org/md5/download/md5-2.2.1.tgz#53ab38d5fe3c8891ba465329ea23fac0540126f9"
+    dependencies:
+      charenc "~0.0.1"
+      crypt "~0.0.1"
+      is-buffer "~1.1.1"
   
   media-typer@0.3.0:
     version "0.3.0"
@@ -5717,6 +5743,10 @@ Lockfile:
   qs@6.5.1:
     version "6.5.1"
     resolved "http://registry.npm.taobao.org/qs/download/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
+  
+  qs@^6.5.2:
+    version "6.5.2"
+    resolved "http://registry.npm.taobao.org/qs/download/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   
   qs@~6.3.0:
     version "6.3.2"
@@ -7445,82 +7475,13 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: D:\H5\Projects\nuxt-fuju\node_modules\node-sass: Command failed.
+  Error: Command failed.
   Exit code: 1
   Command: C:\windows\system32\cmd.exe
-  Arguments: /d /s /c node scripts/build.js
-  Directory: D:\H5\Projects\nuxt-fuju\node_modules\node-sass
+  Arguments: /d /s /c nuxt
+  Directory: D:\H5\Projects\nuxt-fuju
   Output:
-  Building: D:\H5\inst\node-js\node.exe D:\H5\Projects\nuxt-fuju\node_modules\node-gyp\bin\node-gyp.js rebuild --verbose --libsass_ext= --libsass_cflags= --libsass_ldflags= --libsass_library=
-  gyp info it worked if it ends with ok
-  gyp verb cli [ 'D:\\H5\\inst\\node-js\\node.exe',
-  gyp verb cli   'D:\\H5\\Projects\\nuxt-fuju\\node_modules\\node-gyp\\bin\\node-gyp.js',
-  gyp verb cli   'rebuild',
-  gyp verb cli   '--verbose',
-  gyp verb cli   '--libsass_ext=',
-  gyp verb cli   '--libsass_cflags=',
-  gyp verb cli   '--libsass_ldflags=',
-  gyp verb cli   '--libsass_library=' ]
-  gyp info using node-gyp@3.7.0
-  gyp info using node@8.11.1 | win32 | x64
-  gyp verb command rebuild []
-  gyp verb command clean []
-  gyp verb clean removing "build" directory
-  gyp verb command configure []
-  gyp verb check python checking for Python executable "python2" in the PATH
-  gyp verb `which` failed Error: not found: python2
-  gyp verb `which` failed     at getNotFoundError (D:\H5\Projects\nuxt-fuju\node_modules\node-gyp\node_modules\which\which.js:13:12)
-  gyp verb `which` failed     at F (D:\H5\Projects\nuxt-fuju\node_modules\node-gyp\node_modules\which\which.js:68:19)
-  gyp verb `which` failed     at E (D:\H5\Projects\nuxt-fuju\node_modules\node-gyp\node_modules\which\which.js:80:29)
-  gyp verb `which` failed     at D:\H5\Projects\nuxt-fuju\node_modules\node-gyp\node_modules\which\which.js:89:16
-  gyp verb `which` failed     at D:\H5\Projects\nuxt-fuju\node_modules\isexe\index.js:42:5
-  gyp verb `which` failed     at D:\H5\Projects\nuxt-fuju\node_modules\isexe\windows.js:36:5
-  gyp verb `which` failed     at FSReqWrap.oncomplete (fs.js:152:21)
-  gyp verb `which` failed  python2 { Error: not found: python2
-  gyp verb `which` failed     at getNotFoundError (D:\H5\Projects\nuxt-fuju\node_modules\node-gyp\node_modules\which\which.js:13:12)
-  gyp verb `which` failed     at F (D:\H5\Projects\nuxt-fuju\node_modules\node-gyp\node_modules\which\which.js:68:19)
-  gyp verb `which` failed     at E (D:\H5\Projects\nuxt-fuju\node_modules\node-gyp\node_modules\which\which.js:80:29)
-  gyp verb `which` failed     at D:\H5\Projects\nuxt-fuju\node_modules\node-gyp\node_modules\which\which.js:89:16
-  gyp verb `which` failed     at D:\H5\Projects\nuxt-fuju\node_modules\isexe\index.js:42:5
-  gyp verb `which` failed     at D:\H5\Projects\nuxt-fuju\node_modules\isexe\windows.js:36:5
-  gyp verb `which` failed     at FSReqWrap.oncomplete (fs.js:152:21)
-  gyp verb `which` failed   stack: 'Error: not found: python2\n    at getNotFoundError (D:\\H5\\Projects\\nuxt-fuju\\node_modules\\node-gyp\\node_modules\\which\\which.js:13:12)\n    at F (D:\\H5\\Projects\\nuxt-fuju\\node_modules\\node-gyp\\node_modules\\which\\which.js:68:19)\n    at E (D:\\H5\\Projects\\nuxt-fuju\\node_modules\\node-gyp\\node_modules\\which\\which.js:80:29)\n    at D:\\H5\\Projects\\nuxt-fuju\\node_modules\\node-gyp\\node_modules\\which\\which.js:89:16\n    at D:\\H5\\Projects\\nuxt-fuju\\node_modules\\isexe\\index.js:42:5\n    at D:\\H5\\Projects\\nuxt-fuju\\node_modules\\isexe\\windows.js:36:5\n    at FSReqWrap.oncomplete (fs.js:152:21)',
-  gyp verb `which` failed   code: 'ENOENT' }
-  gyp verb check python checking for Python executable "python" in the PATH
-  gyp verb `which` failed Error: not found: python
-  gyp verb `which` failed     at getNotFoundError (D:\H5\Projects\nuxt-fuju\node_modules\node-gyp\node_modules\which\which.js:13:12)
-  gyp verb `which` failed     at F (D:\H5\Projects\nuxt-fuju\node_modules\node-gyp\node_modules\which\which.js:68:19)
-  gyp verb `which` failed     at E (D:\H5\Projects\nuxt-fuju\node_modules\node-gyp\node_modules\which\which.js:80:29)
-  gyp verb `which` failed     at D:\H5\Projects\nuxt-fuju\node_modules\node-gyp\node_modules\which\which.js:89:16
-  gyp verb `which` failed     at D:\H5\Projects\nuxt-fuju\node_modules\isexe\index.js:42:5
-  gyp verb `which` failed     at D:\H5\Projects\nuxt-fuju\node_modules\isexe\windows.js:36:5
-  gyp verb `which` failed     at FSReqWrap.oncomplete (fs.js:152:21)
-  gyp verb `which` failed  python { Error: not found: python
-  gyp verb `which` failed     at getNotFoundError (D:\H5\Projects\nuxt-fuju\node_modules\node-gyp\node_modules\which\which.js:13:12)
-  gyp verb `which` failed     at F (D:\H5\Projects\nuxt-fuju\node_modules\node-gyp\node_modules\which\which.js:68:19)
-  gyp verb `which` failed     at E (D:\H5\Projects\nuxt-fuju\node_modules\node-gyp\node_modules\which\which.js:80:29)
-  gyp verb `which` failed     at D:\H5\Projects\nuxt-fuju\node_modules\node-gyp\node_modules\which\which.js:89:16
-  gyp verb `which` failed     at D:\H5\Projects\nuxt-fuju\node_modules\isexe\index.js:42:5
-  gyp verb `which` failed     at D:\H5\Projects\nuxt-fuju\node_modules\isexe\windows.js:36:5
-  gyp verb `which` failed     at FSReqWrap.oncomplete (fs.js:152:21)
-  gyp verb `which` failed   stack: 'Error: not found: python\n    at getNotFoundError (D:\\H5\\Projects\\nuxt-fuju\\node_modules\\node-gyp\\node_modules\\which\\which.js:13:12)\n    at F (D:\\H5\\Projects\\nuxt-fuju\\node_modules\\node-gyp\\node_modules\\which\\which.js:68:19)\n    at E (D:\\H5\\Projects\\nuxt-fuju\\node_modules\\node-gyp\\node_modules\\which\\which.js:80:29)\n    at D:\\H5\\Projects\\nuxt-fuju\\node_modules\\node-gyp\\node_modules\\which\\which.js:89:16\n    at D:\\H5\\Projects\\nuxt-fuju\\node_modules\\isexe\\index.js:42:5\n    at D:\\H5\\Projects\\nuxt-fuju\\node_modules\\isexe\\windows.js:36:5\n    at FSReqWrap.oncomplete (fs.js:152:21)',
-  gyp verb `which` failed   code: 'ENOENT' }
-  gyp verb could not find "python". checking python launcher 
-  gyp verb could not find "python". guessing location 
-  gyp verb ensuring that file exists: C:\Python27\python.exe
-  gyp ERR! configure error 
-  gyp ERR! stack Error: Can't find Python executable "python", you can set the PYTHON env variable.
-  gyp ERR! stack     at PythonFinder.failNoPython (D:\H5\Projects\nuxt-fuju\node_modules\node-gyp\lib\configure.js:492:19)
-  gyp ERR! stack     at PythonFinder.<anonymous> (D:\H5\Projects\nuxt-fuju\node_modules\node-gyp\lib\configure.js:517:16)
-  gyp ERR! stack     at D:\H5\Projects\nuxt-fuju\node_modules\graceful-fs\polyfills.js:284:29
-  gyp ERR! stack     at FSReqWrap.oncomplete (fs.js:152:21)
-  gyp ERR! System Windows_NT 6.3.9600
-  gyp ERR! command "D:\\H5\\inst\\node-js\\node.exe" "D:\\H5\\Projects\\nuxt-fuju\\node_modules\\node-gyp\\bin\\node-gyp.js" "rebuild" "--verbose" "--libsass_ext=" "--libsass_cflags=" "--libsass_ldflags=" "--libsass_library="
-  gyp ERR! cwd D:\H5\Projects\nuxt-fuju\node_modules\node-sass
-  gyp ERR! node -v v8.11.1
-  gyp ERR! node-gyp -v v3.7.0
-  gyp ERR! not ok 
-  Build failed with error code: 1
+  
       at ProcessTermError.MessageError (C:\Users\Titanum\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)
       at new ProcessTermError (C:\Users\Titanum\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:226:113)
       at ChildProcess.<anonymous> (C:\Users\Titanum\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:30281:17)

@@ -238,7 +238,7 @@
         name: "secHouseList",
         layout: "secondHanBuju",
         async asyncData(){
-            let r_idData = await axios.get(api.paramToUrl(api.regionLists,{city:"呼和浩特"}))
+            let r_idData = await axios.get(api.paramToUrl(api.regionLists,{city:"呼和浩特"}));
             r_idData.data.data = r_idData.data.data.map(item =>{
                 item.title = item.area;
                 return item;

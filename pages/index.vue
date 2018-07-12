@@ -6,11 +6,8 @@
             <div class="block1">
                 <div v-swiper:mySwiper="swiperOption" v-banner id="banner">
                     <div class="swiper-wrapper">
-                        <div style="overflow: hidden" class="swiper-slide" >
-                            <img src="../assets/img/banner1.jpg" class="slide-img">
-                        </div>
-                        <div style="overflow: hidden" class="swiper-slide" >
-                            <img src="../assets/img/banner1.jpg" class="slide-img">
+                        <div style="overflow: hidden" class="swiper-slide" v-for="banner in banners">
+                            <img :src="'http://www.fooju.cn/'+banner.picurl" class="slide-img">
                         </div>
                     </div>
                 </div>
@@ -26,12 +23,15 @@
                         <li class="fll link-item" :class="{active: selectedIndex == 4}" @click="selectedIndex = 4">找小区</li>
                     </ul>
                     <div class="search-bottom clearfix">
-                        <input type="text" class="fll" :placeholder="placeholderText">
+                        <input type="text" class="fll" :placeholder="placeholderText" v-model="searchText">
                         <div class="searchBtn fll">搜索</div>
-                        <div class="searchMap flr">
+                        <div class="searchMap flr" v-if="selectedIndex<3">
                             <img src="../assets/img/mapSearch.png">
                             地图找房
                         </div>
+                        <ul class="pre-search" v-show="isSearch">
+                            <li v-for="item in searchData" @click="handleFind">{{item.title}}</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -40,14 +40,20 @@
                 <div class="touTiao-img fll">
                     <img src="../assets/img/touTiao.png">
                 </div>
-                <wordSwiper></wordSwiper>
+                <div v-swiper:headlineSwiper="headlineOption" class="wordSwiper fll">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" v-for="(item,index) in headlineData">
+                            <nuxt-link to="#" class="swiper-link" :key="index">{{item.title}}</nuxt-link>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
-
+        <!--小图标-->
         <div class="content2">
             <div class="block2">
-                <a href="#" class="item">
+                <a href="/shouyeAbout/storeList" class="item">
                     <div class="item-img"><img src="../assets/img/store.png"></div>
                     <div class="item-ti1">查门店</div>
                     <div class="item-ti2">查优质门店</div>
@@ -69,6 +75,7 @@
                 </a>
             </div>
         </div>
+        <!--大图标-->
         <div class="content3">
             <div class="block3">
                 <div class="item3">
@@ -82,6 +89,7 @@
                 </div>
             </div>
         </div>
+        <!--精品新房-->
         <div class="content4">
             <div class="block4">
                 <div class="blo4-title">
@@ -90,30 +98,17 @@
                 </div>
                 <div class="blo4-span">在这里寻觅一个新家...</div>
                 <div class="blo4-img">
-                    <div class="blo4-item">
-                        <a href="#"><img src="../assets/img/index4/index4-1.jpg"></a>
+                    <div class="blo4-item" v-for="(item,index) in productData.new" v-if="index<3">
+                        <a href="#"><img :src="'http://www.fooju.cn/'+item.pic"></a>
                         <div class="blo4-foot">
-                            <span class="blo4-fleft">盛世国际</span>
-                            <span class="blo4-fright">0元/平</span>
-                        </div>
-                    </div>
-                    <div class="blo4-item">
-                        <a href="#"><img src="../assets/img/index4/index4-2.jpg"></a>
-                        <div class="blo4-foot">
-                            <span class="blo4-fleft">盛世国际</span>
-                            <span class="blo4-fright">0元/平</span>
-                        </div>
-                    </div>
-                    <div class="blo4-item">
-                        <a href="#"><img src="../assets/img/index4/index4-3.jpg"></a>
-                        <div class="blo4-foot">
-                            <span class="blo4-fleft">盛世国际</span>
-                            <span class="blo4-fright">0元/平</span>
+                            <span class="blo4-fleft">{{item.title}}</span>
+                            <span class="blo4-fright">{{item.average_price}}元/平</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!--二手优品-->
         <div class="content5">
             <div class="block5">
                 <div class="blo5-title">
@@ -122,33 +117,18 @@
                 </div>
                 <div class="blo5-span">生活因为宽广，才会不断延伸...</div>
                 <div class="blo5-img">
-                    <div class="blo5-item">
-                        <a href="#"><img src="../assets/img/index5/index5-1.jpg"></a>
-                        <div class="price-tag">100万</div>
+                    <div class="blo5-item" v-for="(item,index) in productData.used" v-if="index<3">
+                        <a href="#"><img :src="'http://www.fooju.cn/'+item.pic"></a>
+                        <div class="price-tag">{{item.total_price}}万</div>
                         <div class="blo5-foot">
-                            <span>北辰新领地 三居 可按揭</span>
-                            <span>3室2厅2卫 128.80㎡</span>
-                        </div>
-                    </div>
-                    <div class="blo5-item">
-                        <a href="#"><img src="../assets/img/index5/index5-2.jpg"></a>
-                        <div class="price-tag">100万</div>
-                        <div class="blo5-foot">
-                            <span>北辰新领地 三居 可按揭</span>
-                            <span>3室2厅2卫 128.80㎡</span>
-                        </div>
-                    </div>
-                    <div class="blo5-item">
-                        <a href="#"><img src="../assets/img/index5/index5-3.jpg"></a>
-                        <div class="price-tag">100万</div>
-                        <div class="blo5-foot">
-                            <span>北辰新领地 三居 可按揭</span>
-                            <span>3室2厅2卫 128.80㎡</span>
+                            <span>{{item.title}}</span>
+                            <span>{{item.bedroom}}室{{item.livingroom}}厅{{item.wc}}卫&nbsp;&nbsp;{{item.built_area}}m²</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!--广告栏-->
         <div class="index-ad">
             <a href="#">
                 <div class="ad-block">
@@ -156,6 +136,7 @@
                 </div>
             </a>
         </div>
+        <!--精品租房-->
         <div class="content6">
             <div class="block6">
                 <div class="blo6-title">
@@ -164,33 +145,13 @@
                 </div>
                 <div class="blo6-span">与其等待，不如坐享繁华...</div>
                 <div class="blo6-img">
-                    <div class="blo6-item">
-                        <a href="#"><img src="../assets/img/index6/index6-1.png"></a>
+                    <div class="blo6-item" v-for="(item,index) in productData.retal" v-if="index<3">
+                        <a href="#"><img :src="'http://www.fooju.cn/'+item.pic"></a>
                         <div class="blo6-foot">
-                            <div class="foot-6">北辰新领地 三居 可按揭</div>
+                            <div class="foot-6">{{item.title}}</div>
                             <div class="foot-6">
-                                <span class="fleft">3室2厅2卫 128.80㎡</span>
-                                <span class="fright">1100元/月</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="blo6-item">
-                        <a href="#"><img src="../assets/img/index6/index6-2.png"></a>
-                        <div class="blo6-foot">
-                            <div class="foot-6">北辰新领地 三居 可按揭</div>
-                            <div class="foot-6">
-                                <span class="fleft">3室2厅2卫 128.80㎡</span>
-                                <span class="fright">1100元/月</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="blo6-item">
-                        <a href="#"><img src="../assets/img/index6/index6-3.png"></a>
-                        <div class="blo6-foot">
-                            <div class="foot-6">北辰新领地 三居 可按揭</div>
-                            <div class="foot-6">
-                                <span class="fleft">3室2厅2卫 128.80㎡</span>
-                                <span class="fright">1100元/月</span>
+                                <span class="fleft">{{item.bedroom}}室{{item.livingroom}}厅{{item.wc}}卫&nbsp;&nbsp;{{item.built_area}}m²</span>
+                                <span class="fright">{{item.rent}}元/月</span>
                             </div>
                         </div>
                     </div>
@@ -204,6 +165,7 @@
 <script>
     import axios from '~/plugins/axios';
     import wordSwiper from '~/components/wordSwiper1';
+    import api from '~/mainApi/index';
 
     export default {
         components:{
@@ -211,9 +173,20 @@
         },
         data(){
             return{
-                swiperOption:{},
+                swiperOption:{
+                    autoplay: true
+                },
                 selectedIndex: 0,
-                placeholderText: "输入小区名查找二手房"
+                placeholderText: "输入小区名查找二手房",
+                headlineOption: {
+                    autoplay: true,
+                    speed: 400,
+                    direction: 'vertical',
+                    loop: true
+                },
+                searchData: [],
+                searchText: "",
+                isSearch: false
             }
         },
         watch:{
@@ -235,15 +208,57 @@
                         this.placeholderText = "输入小区名找小区";
                         break;
                 }
+            },
+            searchText(val){
+                if(val.trim() != ""){
+                    this.isSearch = true;
+                    axios.get(api.paramToUrl(api.used_lists,{title: val})).then(res =>{
+                        this.searchData = res.data.data;
+                    }).catch(err => {
+                        console.log(err);
+                    })
+                }else{
+                    this.isSearch = false;
+                }
             }
         },
         async asyncData() {
-            let {data} = await axios.get('/api/users')
-            return {users: data}
+            // let {data} = await axios.get('/api/users');
+            let bannerData = await axios.get(api.paramToUrl(api.adLists,{type: 0,position: 0}));
+            let res = await axios.get(api.regionListCopy);
+            let headlineData = await axios.get(api.paramToUrl(api.encyTop,{page_num: 0,page_size: 10}));
+            let features = await axios.get(api.linkData);
+            let productData = await axios.get(api.paramToUrl(api.productRecommend,{plat: 2,page_num: 1,page_size: 3}));
+
+            console.log(productData.data);
+            return {
+                // users: data,
+                region: res.data.data,
+                banners: bannerData.data.data,
+                headlineData: headlineData.data.datas[0],
+                features: features.data.datas,
+                productData: productData.data
+            };
+        },
+        mounted(){
+            console.log('1');
         },
         head() {
             return {
                 title: 'Users'
+            }
+        },
+        methods: {
+            handleFind(){
+                console.log('查找');
+            },
+            // 点击按钮
+            handleSearch(){
+              let selected = this.selectedIndex;
+              switch(selected){
+                  case 0:
+                      this.$router.push({name:"secHouseList",query:{q: this.searchText}})
+              }
             }
         },
         directives:{
@@ -385,33 +400,19 @@
             width: 1100px;
             height: 30px;
             z-index: 2;
-            .scrollBox{
-                height:20px;
-                width: 170px;
-                padding: 0 10px;
+            .wordSwiper{
+                margin-left: 15px;
                 overflow: hidden;
+                height: 30px;
+                line-height: 30px;
+                .swiper-wrapper{
+                    .swiper-slide{
+                        .swiper-link{
+                            color: #fff;
+                        }
+                    }
+                }
             }
-            .scrollBox ul{
-                padding-left: 0;
-                list-style: none;
-                animation-name: go;
-                animation-duration: 4s;
-                animation-timing-function: linear;
-                animation-iteration-count: infinite;
-                color: #fff;
-                font-size: 16px;
-            }
-            /*<!--@keyframes go {-->*/
-                /*<!--0% {-->*/
-                    /*<!--transform: translateY(0);-->*/
-                /*<!--}-->*/
-                /*<!--25%,50%{-->*/
-                    /*<!--transform: translateY(-20px);-->*/
-                /*<!--}-->*/
-                /*<!--75%,100% {-->*/
-                    /*<!--transform: translateY(-40px);-->*/
-                /*<!--}-->*/
-            /*<!--}-->*/
         }
     }
 
