@@ -7,7 +7,7 @@
             </div>
             <div class="searchBlock">
                 <input class="fll input" type="text" placeholder="搜索">
-                <input class="searchBtn fll" type="button" value="搜索"></input>
+                <input class="searchBtn fll" type="button" value="搜索">
             </div>
 
             <div class="area choice clearfix">

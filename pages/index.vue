@@ -164,13 +164,9 @@
 
 <script>
     import axios from '~/plugins/axios';
-    import wordSwiper from '~/components/wordSwiper1';
     import api from '~/mainApi/index';
 
     export default {
-        components:{
-            wordSwiper
-        },
         data(){
             return{
                 swiperOption:{
