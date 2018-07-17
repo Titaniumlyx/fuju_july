@@ -19,9 +19,9 @@
                 <span>呼和浩特<i class="iconfont icon-jiantou6"></i></span>
             </div>
             <div class="headNav clearfix">
-                <span class="nav-item active"><a href="#">首页</a></span>
+                <span class="nav-item active"><a href="javascript:">首页</a></span>
                 <span class="nav-item"><a href="/secondHand/secHouseList">二手房</a></span>
-                <span class="nav-item"><a href="#">新房</a></span>
+                <span class="nav-item"><a href="/newHouseAbout/newHouseIndex">新房</a></span>
                 <span class="nav-item"><a href="/rentHouseLists/rentHouse">租房</a></span>
                 <span class="nav-item"><a href="#">学区房</a></span>
                 <span class="nav-item"><a href="#">小区</a></span>

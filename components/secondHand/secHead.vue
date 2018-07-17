@@ -3,10 +3,10 @@
         <div class="secHandTop1">
             <div class="secBlock">
                 <div class="headNav fll">
-                    <span class="nav-item"><a href="#">首页</a></span>
-                    <span class="nav-item"><a href="#">二手房</a></span>
-                    <span class="nav-item"><a href="#">新房</a></span>
-                    <span class="nav-item"><a href="#">租房</a></span>
+                    <span class="nav-item"><a href="/">首页</a></span>
+                    <span class="nav-item active"><a href="javascript:">二手房</a></span>
+                    <span class="nav-item"><a href="/newHouseAbout/newHouseIndex">新房</a></span>
+                    <span class="nav-item"><a href="/rentHouseLists/rentHouse">租房</a></span>
                     <span class="nav-item"><a href="#">学区房</a></span>
                     <span class="nav-item"><a href="#">小区</a></span>
                     <span class="nav-item"><a href="#">经纪人</a></span>
@@ -86,6 +86,11 @@
                 padding-bottom: 18px;
                 border-bottom: 2px solid #c30d23;
             }
+        }
+        .active a {
+            color: #c30d23;
+            padding-bottom: 18px;
+            border-bottom: 2px solid #c30d23;
         }
     }
     .spinner:hover .spinner-content {
